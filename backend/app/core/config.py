@@ -83,6 +83,14 @@ class Settings(BaseSettings):
     LOG_RETENTION_DAYS: int = 7
     AUTO_SAVE_NEGOTIATIONS: bool = True
     
+    # Tigris Configuration
+    TIGRIS_ENABLED: bool = True  # Hardcoded for debugging
+    TIGRIS_ENDPOINT_URL: str = "https://t3.storage.dev"
+    TIGRIS_ACCESS_KEY_ID: str = ""
+    TIGRIS_SECRET_ACCESS_KEY: str = ""
+    TIGRIS_REGION: str = "auto"
+    TIGRIS_BUCKET_NAME: str = "negotiation-logs"
+    
     # Session Management
     SESSION_CLEANUP_HOURS: int = 1  # TTL for active_rooms cache
     

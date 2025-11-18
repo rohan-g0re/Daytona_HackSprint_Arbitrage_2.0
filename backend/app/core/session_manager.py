@@ -26,6 +26,7 @@ from ..models.api_schemas import (
 from ..models.negotiation import NegotiationRoomState
 from ..models.agent import BuyerConstraints, Seller as SellerModel, InventoryItem, SellerProfile
 from ..services.seller_selection import select_sellers_for_item
+from ..services.tigris_storage import tigris_storage
 from ..utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -691,7 +692,7 @@ class SessionManager:
             "rounds": run.current_round
         }
         
-        # Write to file
+        # Write to local file
         log_dir = Path(settings.LOGS_DIR) / session.id / run_id
         log_dir.mkdir(parents=True, exist_ok=True)
         log_file = log_dir / f"{run_id}.json"
@@ -700,6 +701,20 @@ class SessionManager:
             json.dump(log_data, f, indent=2)
         
         logger.info(f"Wrote JSON log to {log_file}")
+        
+        # Upload to Tigris (additional redundant storage)
+        print(f"\n{'='*80}")
+        print(f"🔍 SESSION DEBUG: About to call tigris_storage.save_log")
+        print(f"🔍 SESSION DEBUG: session_id={session.id}, run_id={run_id}")
+        print(f"{'='*80}\n")
+        tigris_success = tigris_storage.save_log(session.id, run_id, log_data)
+        print(f"\n{'='*80}")
+        print(f"🔍 SESSION DEBUG: tigris_storage.save_log returned: {tigris_success}")
+        print(f"{'='*80}\n")
+        if tigris_success:
+            logger.info(f"Successfully uploaded log to Tigris for run {run_id}")
+        else:
+            logger.debug(f"Tigris upload skipped or failed for run {run_id} (local file is primary)")
     
     @staticmethod
     def cleanup_old_logs():
