@@ -66,7 +66,7 @@ sandbox = daytona.create(params)
 
 Removal (cleanup):
 ```python
-daytona.remove(sandbox)
+daytona.delete(sandbox)
 ```
 
 Planned MAMS integration points:

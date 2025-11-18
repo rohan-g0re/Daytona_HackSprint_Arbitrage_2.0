@@ -67,6 +67,15 @@ class Settings(BaseSettings):
         """Get CORS origins as a list."""
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
     
+    # Daytona Configuration
+    DAYTONA_ENABLED: bool = True
+    DAYTONA_DEFAULT_LANGUAGE: str = "python"
+    DAYTONA_SANDBOX_TTL_MINUTES: int = 30
+    DAYTONA_MAX_PARALLEL_SANDBOXES: int = 8
+    DAYTONA_API_KEY: str = ""
+    DAYTONA_API_URL: str = "https://app.daytona.io/api"
+    DAYTONA_TARGET: str = "us"
+
     # Logging
     LOG_LEVEL: str = "INFO"
     LOG_FILE: str = "./data/logs/app.log"
