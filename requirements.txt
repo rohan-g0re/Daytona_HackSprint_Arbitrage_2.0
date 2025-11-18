@@ -1,0 +1,86 @@
+# Requirements converted from environment.yml for pip-only installation
+# Python 3.10+ required
+
+# ============================================================================
+# Backend Core Dependencies (from backend/requirements.txt)
+# ============================================================================
+# FastAPI and server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# HTTP client - pinned for Windows ARM compatibility
+httpx==0.25.1
+
+# SSE support
+sse-starlette==1.8.2
+
+# Database
+sqlalchemy[asyncio]==2.0.23
+aiosqlite==0.19.0
+
+# Config and validation - pinned for stability
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Utilities
+python-dotenv==1.0.0
+
+# ============================================================================
+# Additional Dependencies from environment.yml
+# ============================================================================
+# Core dependencies
+annotated-types==0.7.0
+# anyio - FastAPI will install compatible version automatically (requires <4.0.0)
+backoff==2.2.1
+certifi==2025.10.5
+charset-normalizer==3.4.4
+colorama==0.4.6
+coloredlogs==15.0.1
+deprecation==2.1.0
+exceptiongroup==1.3.0
+filelock==3.20.0
+h11==0.16.0
+httpcore==1.0.9
+humanfriendly==10.0
+idna==3.11
+jinja2==3.1.6
+markupsafe==3.0.3
+packaging==25.0
+python-dateutil==2.9.0.post0
+requests==2.32.5
+six==1.17.0
+sniffio==1.3.1
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+urllib3==2.5.0
+wcwidth==0.2.14
+
+# ML/AI Libraries
+numpy>=2.0.0
+torch==2.9.0
+torchvision==0.24.0
+onnx==1.19.1
+onnxruntime==1.23.2
+onnxruntime-qnn==1.23.2
+ml-dtypes==0.5.3
+h5py==3.15.1
+pillow==12.0.0
+
+# Additional utilities
+botocore==1.40.70
+flatbuffers==25.9.23
+fsspec==2025.10.0
+jmespath==1.0.1
+mpmath==1.3.0
+networkx==3.4.2
+# ollama==0.6.1  # REMOVED - not used in backend and conflicts with httpx==0.25.1
+prettytable==3.16.0
+protobuf==6.31.1
+pyreadline3==3.5.4
+qai-hub==0.40.0
+requests-toolbelt==1.0.0
+s3transfer==0.13.1
+semver==3.0.4
+sympy==1.14.0
+tqdm==4.67.1
+

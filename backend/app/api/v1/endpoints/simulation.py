@@ -254,6 +254,64 @@ async def get_session_summary(session_id: str) -> SessionSummaryResponse:
             except Exception as e:
                 logger.warning(f"Failed to generate overall analysis: {e}")
         
+        # Apply feedback loop using Galileo (after summaries are generated)
+        try:
+            from ....services.price_feedback_service import price_feedback_service
+            from ....services.galileo_service import galileo_feedback_service
+            
+            # Log negotiation traces to Galileo
+            for run in completed_runs:
+                try:
+                    await galileo_feedback_service.log_negotiation_trace(
+                        db=db,
+                        run_id=run.id,
+                        session_id=session_id
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to log trace to Galileo for run {run.id}: {e}")
+            
+            # Prepare AI summaries for feedback service
+            # Convert Pydantic models to dict (Pydantic v2 uses model_dump())
+            def to_dict(obj):
+                """Convert Pydantic model to dict, handling both v1 and v2."""
+                if obj is None:
+                    return {}
+                if hasattr(obj, 'model_dump'):
+                    return obj.model_dump()
+                elif hasattr(obj, 'dict'):
+                    return obj.dict()
+                elif isinstance(obj, dict):
+                    return obj
+                else:
+                    return {}
+            
+            ai_summaries_dict = {
+                "overall": to_dict(overall_analysis)
+            }
+            for run_id, summary in run_summaries.items():
+                if hasattr(summary, 'model_dump'):
+                    ai_summaries_dict[run_id] = summary.model_dump()
+                elif hasattr(summary, 'dict'):
+                    ai_summaries_dict[run_id] = summary.dict()
+                elif hasattr(summary, 'narrative'):
+                    ai_summaries_dict[run_id] = {
+                        "narrative": summary.narrative,
+                        "buyer_analysis": to_dict(summary.buyer_analysis) if hasattr(summary, 'buyer_analysis') else {},
+                        "seller_analysis": to_dict(summary.seller_analysis) if hasattr(summary, 'seller_analysis') else {}
+                    }
+                else:
+                    ai_summaries_dict[run_id] = summary if isinstance(summary, dict) else {}
+            
+            # Apply feedback loop (async, non-blocking)
+            feedback_result = await price_feedback_service.apply_feedback_after_summary(
+                db=db,
+                session_id=session_id,
+                ai_summaries=ai_summaries_dict
+            )
+            logger.info(f"✅ Price feedback applied: {feedback_result.get('adjustments_applied', 0)} adjustments")
+        except Exception as e:
+            logger.warning(f"Price feedback loop failed (non-critical): {e}")
+        
         # Build response
         return SessionSummaryResponse(
             session_id=session_id,

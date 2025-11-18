@@ -81,6 +81,13 @@ class Settings(BaseSettings):
     SSE_HEARTBEAT_INTERVAL: int = 15  # seconds between heartbeat events
     SSE_RETRY_TIMEOUT: int = 5  # seconds for SSE retry timeout
     
+    # Galileo AI Observability Configuration
+    GALILEO_ENABLED: bool = False
+    GALILEO_API_KEY: str = ""
+    GALILEO_PROJECT: str = "Arbritrage"
+    GALILEO_LOG_STREAM: str = "default"
+    GALILEO_CONSOLE_URL: str = "https://app.galileo.ai"  # Optional, defaults to app.galileo.ai
+    
     class Config:
         # Look for .env in project root (Hack_NYU/.env) first, then backend/.env
         env_file = [

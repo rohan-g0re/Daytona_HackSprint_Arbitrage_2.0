@@ -22,3 +22,6 @@ pydantic-settings==2.1.0
 # Utilities
 python-dotenv==1.0.0
 
+# Galileo AI Observability
+galileo[openai]>=0.1.0
+

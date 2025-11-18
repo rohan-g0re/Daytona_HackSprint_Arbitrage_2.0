@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "session_id": "f32a0fbf-0cbd-4e68-b0c8-14f1b0a42fea",
+    "run_id": "3ffbdc99-cfed-428f-abba-a58864786fae",
+    "created_at": "2025-11-18T18:25:44",
+    "started_at": "2025-11-18T13:25:44.132767",
+    "ended_at": "2025-11-18T13:25:44.231875"
+  },
+  "buyer": {
+    "buyer_id": "8a595559-2851-4f14-aff5-3278560b3e84",
+    "buyer_name": "Test Buyer",
+    "item_name": "Gaming Laptop",
+    "quantity_needed": 1,
+    "min_price": 800.0,
+    "max_price": 1200.0
+  },
+  "sellers": [],
+  "conversation_history": [
+    {
+      "message_id": "0e7e1e03-a9f4-49f4-a2d0-92403e67fdac",
+      "turn_number": 1,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "buyer",
+      "sender_id": "8a595559-2851-4f14-aff5-3278560b3e84",
+      "sender_name": "Test Buyer",
+      "content": "Round 1: I'm looking for a good deal on a gaming laptop.",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "af170554-c824-4f56-b266-04cac417d7bd",
+      "turn_number": 2,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "09f93133-3525-47f5-aa89-ea262b94f2ea",
+      "sender_name": "TechStore A",
+      "content": "Round 2: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "a662748d-c6f5-432f-b81d-b20e58fcd022",
+      "turn_number": 2,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "cb4f82ba-0f87-46be-98a2-f648c97f699e",
+      "sender_name": "TechStore B",
+      "content": "Round 2: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "29b613e9-7eee-4a14-9472-114fbd55dec6",
+      "turn_number": 2,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "f3aee9ee-44cd-4e09-86dd-b5c6f6d0d132",
+      "sender_name": "TechStore C",
+      "content": "Round 2: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "3ff70560-2b17-4252-8e32-b90a2d9feb01",
+      "turn_number": 3,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "buyer",
+      "sender_id": "8a595559-2851-4f14-aff5-3278560b3e84",
+      "sender_name": "Test Buyer",
+      "content": "Round 3: I'm looking for a good deal on a gaming laptop.",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "3d9106fa-015d-4fc6-ab49-a2a77697763e",
+      "turn_number": 4,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "09f93133-3525-47f5-aa89-ea262b94f2ea",
+      "sender_name": "TechStore A",
+      "content": "Round 4: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "cf3e5827-92f5-4241-8638-2395998c7eb8",
+      "turn_number": 4,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "cb4f82ba-0f87-46be-98a2-f648c97f699e",
+      "sender_name": "TechStore B",
+      "content": "Round 4: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "51c9382b-9a29-426b-8ca8-748e6e1c9a1b",
+      "turn_number": 4,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "seller",
+      "sender_id": "f3aee9ee-44cd-4e09-86dd-b5c6f6d0d132",
+      "sender_name": "TechStore C",
+      "content": "Round 4: I can offer you a great price!",
+      "mentioned_agents": []
+    },
+    {
+      "message_id": "8a4faab2-ea59-43fb-a455-a32e232e9bdf",
+      "turn_number": 5,
+      "timestamp": "2025-11-18T18:25:44",
+      "sender_type": "buyer",
+      "sender_id": "8a595559-2851-4f14-aff5-3278560b3e84",
+      "sender_name": "Test Buyer",
+      "content": "Round 5: I'm looking for a good deal on a gaming laptop.",
+      "mentioned_agents": []
+    }
+  ],
+  "offers_over_time": [
+    {
+      "offer_id": "01302a5b-e445-4d02-b8fe-fd676f3e08a6",
+      "message_id": "af170554-c824-4f56-b266-04cac417d7bd",
+      "seller_id": "09f93133-3525-47f5-aa89-ea262b94f2ea",
+      "price_per_unit": 1180.0,
+      "quantity": 1,
+      "timestamp": "2025-11-18T18:25:44"
+    },
+    {
+      "offer_id": "1aa894b4-c238-4fce-acd2-0d3863979f2f",
+      "message_id": "a662748d-c6f5-432f-b81d-b20e58fcd022",
+      "seller_id": "cb4f82ba-0f87-46be-98a2-f648c97f699e",
+      "price_per_unit": 980.0,
+      "quantity": 1,
+      "timestamp": "2025-11-18T18:25:44"
+    },
+    {
+      "offer_id": "c0b649be-40b1-4b68-9f42-29b859427012",
+      "message_id": "29b613e9-7eee-4a14-9472-114fbd55dec6",
+      "seller_id": "f3aee9ee-44cd-4e09-86dd-b5c6f6d0d132",
+      "price_per_unit": 1050.0,
+      "quantity": 1,
+      "timestamp": "2025-11-18T18:25:44"
+    }
+  ],
+  "decision": {
+    "decision_type": "deal",
+    "selected_seller_id": "cb4f82ba-0f87-46be-98a2-f648c97f699e",
+    "final_price": 980.0,
+    "quantity": 1,
+    "total_cost": 980.0,
+    "reason": "Best price offered"
+  },
+  "duration": 0.099108,
+  "rounds": 0
+}
