@@ -200,6 +200,24 @@ class NegotiationGraph:
             # Max rounds reached
             if room_state.current_round >= self.max_rounds and room_state.status != "completed":
                 room_state.status = "aborted"
+                
+                # Emit decision event first (no deal)
+                yield {
+                    "type": "decision",
+                    "data": {
+                        "decision": "no_deal",
+                        "chosen_seller_id": None,
+                        "chosen_seller_name": None,
+                        "final_price": None,
+                        "final_quantity": None,
+                        "total_cost": None,
+                        "reason": "Maximum negotiation rounds reached without reaching an agreement",
+                        "round": room_state.current_round
+                    },
+                    "timestamp": datetime.now()
+                }
+                
+                # Then emit completion
                 yield {
                     "type": "negotiation_complete",
                     "data": {

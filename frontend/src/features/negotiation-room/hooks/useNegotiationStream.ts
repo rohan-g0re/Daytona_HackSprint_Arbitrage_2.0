@@ -133,6 +133,7 @@ export function useNegotiationStream({
           break;
 
         case 'decision':
+          // Set decision for both deal and no-deal cases
           setDecision(roomId, {
             selected_seller_id: event.chosen_seller_id,
             seller_name: event.chosen_seller_name,
@@ -143,8 +144,11 @@ export function useNegotiationStream({
             timestamp: event.timestamp,
           });
           
+          // Check if this is a deal (accept) or no-deal (reject/no_deal)
+          const isDeal = event.decision === 'accept' && event.chosen_seller_name && event.final_price && event.final_quantity && event.total_cost;
+          
           // Sync final deal to session store
-          if (event.chosen_seller_name && event.final_price && event.final_quantity && event.total_cost) {
+          if (isDeal) {
             updateNegotiationRoom(roomId, {
               status: NegotiationStatus.COMPLETED,
               current_round: event.round,
@@ -155,6 +159,12 @@ export function useNegotiationStream({
                 total_cost: event.total_cost,
               },
             });
+          } else {
+            // No deal - just update status to completed
+            updateNegotiationRoom(roomId, {
+              status: NegotiationStatus.COMPLETED,
+              current_round: event.round,
+            });
           }
           
           // Add system message about the decision
@@ -164,7 +174,9 @@ export function useNegotiationStream({
             timestamp: event.timestamp,
             sender_type: 'system',
             sender_name: 'System',
-            message: `🎉 Deal Complete! Selected ${event.chosen_seller_name} at $${event.final_price}/unit for ${event.final_quantity} units. Total: $${event.total_cost}. Reason: ${event.reason || 'Best offer'}`,
+            message: isDeal 
+              ? `🎉 Deal Complete! Selected ${event.chosen_seller_name} at $${event.final_price}/unit for ${event.final_quantity} units. Total: $${event.total_cost}. Reason: ${event.reason || 'Best offer'}`
+              : `❌ No Deal. ${event.reason || 'Negotiation ended without reaching an agreement'}`,
             mentioned_agents: [],
           };
           addMessage(roomId, decisionMessage);
